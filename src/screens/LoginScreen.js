@@ -52,7 +52,28 @@ export default function LoginScreen() {
             placeholder="Password"
           />
         </Stack>
-        <Button>Login</Button>
+        <Button
+          colorScheme="blue"
+          w={{
+            base: '75%',
+            md: '25%',
+          }}
+          marginBottom="1">
+          Login
+        </Button>
+        <Text marginBottom="1" fontSize="md" fontWeight="black">
+          OR
+        </Text>
+        <Button
+          colorScheme="blue"
+          w={{
+            base: '75%',
+            md: '25%',
+          }}
+          marginBottom="1.5"
+          leftIcon={<FontAwesome5 name="facebook" />}>
+          Login via Facebook
+        </Button>
       </Box>
       <Box
         flexDir="row"
