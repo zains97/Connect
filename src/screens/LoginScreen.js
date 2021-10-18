@@ -1,6 +1,5 @@
 import {Box, Button, Heading, Icon, Input, Stack, Text} from 'native-base';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default function LoginScreen() {
