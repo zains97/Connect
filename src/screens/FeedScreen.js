@@ -9,7 +9,7 @@ export default function FeedScreen() {
   const width = Dimensions.get('screen').width;
   return (
     <Box //Container
-      bgColor="blue.900"
+      bgColor="blue.500"
       alignItems="center"
       justifyContent="center"
       flex={1}>
@@ -19,7 +19,7 @@ export default function FeedScreen() {
         flexDirection="row"
         justifyContent="space-between"
         display="flex"
-        bgColor="blue.900"
+        bgColor="darkBlue.500"
         flex={0.07}
         w={width}>
         <Text color="white">Connect</Text>
@@ -29,13 +29,19 @@ export default function FeedScreen() {
         alignItems="center"
         flexDirection="column"
         justifyContent="center"
-        bgColor="purple.600"
+        bgColor="blue.100"
         flex={0.88}
         w={width}>
-        <Box flex={0.05}>
+        <Box flex={0.05} borderBottomWidth="1" borderBottomColor="muted.300">
           <FeedSwitchComponent />
         </Box>
-        <Box flex={0.95} height="100%" bgColor="teal.500">
+        <Box
+          flex={0.95}
+          height="100%"
+          bgColor="blue.100"
+          flexDirection="column"
+          alignItems="center"
+          width={width * 0.96}>
           <PostComponent />
           <PostComponent />
           <PostComponent />
@@ -46,7 +52,7 @@ export default function FeedScreen() {
         alignItems="center"
         justifyContent="center"
         display="flex"
-        bgColor="blue.900"
+        bgColor="blue.500"
         flex={0.05}
         w={width}>
         c

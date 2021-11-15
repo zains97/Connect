@@ -12,7 +12,7 @@ export default function FeedSwitchComponent() {
       justifyContent="space-around"
       bgColor="white">
       <Box justifyContent="center" alignItems="center">
-        <Text>Main Feed</Text>
+        <Text fontStyle="">Main Feed</Text>
       </Box>
       <Box justifyContent="center" alignItems="center">
         <Text>Friend Feed</Text>

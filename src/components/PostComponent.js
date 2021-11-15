@@ -7,12 +7,14 @@ const PostComponent = () => {
   return (
     <Box //Post Container
       flex={0.25}
-      width={width}
-      maxHeight="1/2"
-      borderRadius="xs"
-      borderColor="black">
-      <Box>Kaisy ho yar</Box>
-      <Box>
+      width="100%"
+      flexDirection="row"
+      marginBottom="2"
+      borderRadius="5 ">
+      <Box bgColor="blue.500" width="20%">
+        Kaisy ho yar
+      </Box>
+      <Box bgColor="blue.50" width="80%">
         <Text>Hello world</Text>
       </Box>
     </Box>
