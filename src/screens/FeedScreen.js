@@ -1,6 +1,6 @@
 import {Box, Text} from 'native-base';
 import React from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, ScrollView} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import FeedSwitchComponent from '../components/FeedSwitchComponent';
 import PostComponent from '../components/PostComponent';
@@ -12,7 +12,8 @@ export default function FeedScreen() {
       bgColor="blue.500"
       alignItems="center"
       justifyContent="center"
-      flex={1}>
+      flex={1}
+      w={width}>
       <Box //Header
         paddingX="2"
         alignItems="center"
@@ -29,22 +30,27 @@ export default function FeedScreen() {
         alignItems="center"
         flexDirection="column"
         justifyContent="center"
-        bgColor="blue.100"
+        // bgColor="blue.50"
         flex={0.88}
-        w={width}>
+        // w={width}
+      >
         <Box flex={0.05} borderBottomWidth="1" borderBottomColor="muted.300">
           <FeedSwitchComponent />
         </Box>
         <Box
           flex={0.95}
           height="100%"
-          bgColor="blue.100"
+          bgColor="white"
           flexDirection="column"
           alignItems="center"
-          width={width * 0.96}>
-          <PostComponent />
-          <PostComponent />
-          <PostComponent />
+          w={width}>
+          <ScrollView>
+            <PostComponent />
+            <PostComponent />
+            <PostComponent />
+            <PostComponent />
+            <PostComponent />
+          </ScrollView>
         </Box>
       </Box>
       {/* Feed Body end */}
@@ -54,7 +60,8 @@ export default function FeedScreen() {
         display="flex"
         bgColor="blue.500"
         flex={0.05}
-        w={width}>
+        // w={width}
+      >
         c
       </Box>
     </Box>
