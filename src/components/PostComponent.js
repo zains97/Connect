@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Divider, Text, VStack} from 'native-base';
 import {Dimensions} from 'react-native';
 
-const PostComponent = () => {
+const PostComponent = ({postBody}) => {
   const width = Dimensions.get('screen').width;
   return (
     <Box
@@ -17,11 +17,7 @@ const PostComponent = () => {
         <Box px="2" pt="4">
           NativeBase
         </Box>
-        <Box px="2">
-          NativeBase is a free and open source framework that enable developers
-          to build high-quality mobile apps using React Native iOS and Android
-          apps with a fusion of ES6.
-        </Box>
+        <Box px="2">{postBody}</Box>
         <Box px="2" pb="4">
           GeekyAnts
         </Box>

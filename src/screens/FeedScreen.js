@@ -1,11 +1,22 @@
 import {Box, Text} from 'native-base';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dimensions, ScrollView} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import FeedSwitchComponent from '../components/FeedSwitchComponent';
 import PostComponent from '../components/PostComponent';
+import {fetchPost} from '../api/api';
 
 export default function FeedScreen() {
+  const [post, setPost] = useState();
+
+  useEffect(() => {
+    const data = async () => {
+      setPost(await fetchPost());
+    };
+    data();
+  }, []);
+  console.log('Testing 0: ', post);
+  //fetchPost();
   const width = Dimensions.get('screen').width;
   return (
     <Box //Container
@@ -39,17 +50,16 @@ export default function FeedScreen() {
         </Box>
         <Box
           flex={0.95}
-          height="100%"
           bgColor="white"
           flexDirection="column"
           alignItems="center"
           w={width}>
           <ScrollView>
-            <PostComponent />
-            <PostComponent />
-            <PostComponent />
-            <PostComponent />
-            <PostComponent />
+            <PostComponent postBody={post?.postBody} />
+            <PostComponent postBody={post?.postBody} />
+            <PostComponent postBody={post?.postBody} />
+            <PostComponent postBody={post?.postBody} />
+            <PostComponent postBody={post?.postBody} />
           </ScrollView>
         </Box>
       </Box>
