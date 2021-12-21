@@ -60,6 +60,8 @@ export default function FeedScreen() {
             <PostComponent postBody={post?.postBody} />
             <PostComponent postBody={post?.postBody} />
             <PostComponent postBody={post?.postBody} />
+            <PostComponent postBody={post?.postBody} />
+            <PostComponent postBody={post?.postBody} />
           </ScrollView>
         </Box>
       </Box>
