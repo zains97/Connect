@@ -18,6 +18,7 @@ const Profile = () => {
           flex: 0.95,
           justifyContent: 'center',
           alignItems: 'center',
+          backgroundColor: '#000000c0',
         }}
         imageStyle={{opacity: 0.2}}>
         <View
@@ -44,7 +45,7 @@ const Profile = () => {
             />
           </View>
           <View style={{marginVertical: 10}}>
-            <Text style={{color: 'black', fontSize: 24}}>Ahsan here</Text>
+            <Text style={{color: 'white', fontSize: 24}}>Ahsan here</Text>
           </View>
           <View
             style={{
@@ -59,12 +60,12 @@ const Profile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderStyle: 'dotted',
-                borderColor: 'black',
+                borderColor: 'white',
                 borderRadius: 10,
                 margin: 15,
               }}>
-              <Text style={{color: 'black', fontSize: 24}}>10</Text>
-              <Text style={{color: 'black', fontSize: 24}}>POSTS</Text>
+              <Text style={{color: 'white', fontSize: 24}}>10</Text>
+              <Text style={{color: 'white', fontSize: 24}}>POSTS</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -74,12 +75,12 @@ const Profile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderStyle: 'dotted',
-                borderColor: 'black',
+                borderColor: 'white',
                 borderRadius: 10,
                 margin: 15,
               }}>
-              <Text style={{color: 'black', fontSize: 24}}>20</Text>
-              <Text style={{color: 'black', fontSize: 24}}>FRIENDS</Text>
+              <Text style={{color: 'white', fontSize: 24}}>20</Text>
+              <Text style={{color: 'white', fontSize: 24}}>FRIENDS</Text>
             </TouchableOpacity>
           </View>
         </View>
