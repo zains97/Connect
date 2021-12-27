@@ -1,9 +1,15 @@
 import {Box, Button, Heading, Icon, Input, Stack, Text} from 'native-base';
-import React from 'react';
+import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {loginUser} from '../api/api';
 
 export default function LoginScreen({navigation}) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [user, setUser] = useState(null);
+  console.log('MY USER:         \n\n', user, '\n\n');
+
   return (
     <Box dispaly="flex" flex={1}>
       <Box
@@ -19,6 +25,7 @@ export default function LoginScreen({navigation}) {
         </Text>
         <Stack marginBottom="2.5" space={4} w="100%" alignItems="center">
           <Input
+            onChangeText={text => setEmail(text)}
             variant="filled"
             w={{
               base: '75%',
@@ -26,15 +33,16 @@ export default function LoginScreen({navigation}) {
             }}
             InputLeftElement={
               <Icon
-                as={<FontAwesome5 name="user" />}
+                as={<FontAwesome5 name="at" />}
                 size={5}
                 ml="2"
                 color="muted.400"
               />
             }
-            placeholder="Name"
+            placeholder="Email"
           />
           <Input
+            onChangeText={text => setPassword(text)}
             variant="filled"
             type="password"
             w={{
@@ -53,6 +61,10 @@ export default function LoginScreen({navigation}) {
           />
         </Stack>
         <Button
+          onPress={async () => {
+            setUser(await loginUser(email, password));
+            user ? navigation.navigate('Feed') : null;
+          }}
           colorScheme="blue"
           w={{
             base: '75%',
@@ -64,16 +76,6 @@ export default function LoginScreen({navigation}) {
         <Text marginBottom="1" fontSize="md" fontWeight="black">
           OR
         </Text>
-        <Button
-          colorScheme="blue"
-          w={{
-            base: '75%',
-            md: '25%',
-          }}
-          marginBottom="1.5"
-          leftIcon={<FontAwesome5 name="facebook" />}>
-          Login via Facebook
-        </Button>
       </Box>
       <Box
         flexDir="row"
@@ -83,7 +85,9 @@ export default function LoginScreen({navigation}) {
         flex={0.05}
         backgroundColor="blue.200">
         <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={navigation.navigate('SignUp')}>
+        <TouchableOpacity
+          flex="1"
+          onPress={() => navigation.navigate('SignUp')}>
           <Text bold color="blue.800">
             {' '}
             Sign Up

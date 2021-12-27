@@ -1,16 +1,17 @@
 import React from 'react';
-import {Box, Divider, Text, VStack} from 'native-base';
+import {Box, Divider, VStack} from 'native-base';
 import {Dimensions} from 'react-native';
 
 const PostComponent = ({postBody}) => {
   const width = Dimensions.get('screen').width;
   return (
     <Box
+      width={width * 0.92}
       border="1"
       borderWidth="1"
       borderColor="black"
       borderRadius="10"
-      marginY="5"
+      marginY="2"
       marginX="3"
       backgroundColor="blue.50">
       <VStack space="2" divider={<Divider />}>

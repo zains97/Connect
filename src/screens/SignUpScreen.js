@@ -1,8 +1,9 @@
 import {Box, Button, Heading, Icon, Input, Stack, Text} from 'native-base';
 import React from 'react';
+import {TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-export default function SignUpScreen() {
+export default function SignUpScreen({navigation}) {
   return (
     <Box dispaly="flex" flex={1}>
       <Box
@@ -101,11 +102,13 @@ export default function SignUpScreen() {
         justifyContent="center"
         flex={0.05}
         backgroundColor="blue.200">
-        <Text>Don't have an account?</Text>
-        <Text bold color="blue.800">
-          {' '}
-          Sign Up
-        </Text>
+        <Text>Already have an account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text bold color="blue.800">
+            {' '}
+            Login
+          </Text>
+        </TouchableOpacity>
       </Box>
     </Box>
   );
