@@ -7,8 +7,8 @@ import {NativeBaseProvider} from 'native-base';
 import LoginScreen from './src/screens/LoginScreen';
 import FeedScreen from './src/screens/FeedScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-import NewPostScreen from './src/screens/NewPostScreen';
 import ProfileScreen from './src/screens/Profile';
+import Publish from './src/screens/Publish';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,12 +17,12 @@ function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="NewPost"
+          initialRouteName="Publish"
           screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Publish" component={Publish} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="Feed" component={FeedScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="NewPost" component={NewPostScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
         </Stack.Navigator>
       </NavigationContainer>
