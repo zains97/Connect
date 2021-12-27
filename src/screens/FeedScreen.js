@@ -55,19 +55,9 @@ export default function FeedScreen() {
           alignItems="center"
           w={width}>
           <ScrollView>
-<<<<<<< HEAD
             {posts.map(post => (
               <PostComponent postBody={post?.postBody} />
             ))}
-=======
-            <PostComponent postBody={post?.postBody} />
-            <PostComponent postBody={post?.postBody} />
-            <PostComponent postBody={post?.postBody} />
-            <PostComponent postBody={post?.postBody} />
-            <PostComponent postBody={post?.postBody} />
-            <PostComponent postBody={post?.postBody} />
-            <PostComponent postBody={post?.postBody} />
->>>>>>> c1b233aaeeda8d2605dee86c30d06105d8253bb7
           </ScrollView>
         </Box>
       </Box>
