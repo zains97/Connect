@@ -13,6 +13,7 @@ const PostComponent = ({postBody}) => {
       borderRadius="10"
       marginY="2"
       marginX="3"
+      width={width * 0.92}
       backgroundColor="blue.50">
       <VStack space="2" divider={<Divider />}>
         <Box px="2" pt="4">
