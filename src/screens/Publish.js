@@ -6,7 +6,6 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  StyleSheet,
 } from 'react-native';
 
 const image = require('../assets/goku.png');
