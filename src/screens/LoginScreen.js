@@ -1,8 +1,9 @@
 import {Box, Button, Heading, Icon, Input, Stack, Text} from 'native-base';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {loginUser} from '../api/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState();
@@ -10,8 +11,17 @@ export default function LoginScreen({navigation}) {
   const [user, setUser] = useState(null);
   console.log('MY USER:         \n\n', user, '\n\n');
 
+  useEffect(() => {
+    const setToken = async () => {
+      await AsyncStorage.setItem('token', user.token);
+    };
+    if (user) {
+      setToken();
+    }
+  }, [user]);
+
   return (
-    <Box dispaly="flex" flex={1}>
+    <Box dispaly="flex" flex={1} style={{backgroundColor: 'white'}}>
       <Box
         display="flex"
         alignItems="center"
@@ -63,7 +73,7 @@ export default function LoginScreen({navigation}) {
         <Button
           onPress={async () => {
             setUser(await loginUser(email, password));
-            user ? navigation.navigate('Feed') : null;
+            // user ? navigation.navigate('Feed') : null;
           }}
           colorScheme="blue"
           w={{

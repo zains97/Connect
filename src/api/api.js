@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const hostURL = 'http://192.168.0.106:4050';
+const hostURL = 'http://192.168.10.10:4050';
 
 //APIs for posts
 export const fetchPost = async () => {

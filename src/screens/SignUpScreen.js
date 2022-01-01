@@ -5,7 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default function SignUpScreen({navigation}) {
   return (
-    <Box dispaly="flex" flex={1}>
+    <Box dispaly="flex" flex={1} style={{backgroundColor: 'white'}}>
       <Box
         display="flex"
         alignItems="center"
