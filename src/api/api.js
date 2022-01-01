@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const hostURL = 'http://192.168.0.106:4050';
 
+//APIs for posts
 export const fetchPost = async () => {
   const {data} = await (
     await fetch(`${hostURL}/api/posts/61bb57d29427852cc3d2e5dd`)
@@ -19,6 +20,7 @@ export const getAllPosts = async (req, res) => {
   return data;
 };
 
+//APIs for user
 export const loginUser = async (email, password) => {
   const url = `${hostURL}/api/auth/login`;
   const {data} = await axios.post(url, {email, password}).then(res => res.data);

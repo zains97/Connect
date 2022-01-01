@@ -15,7 +15,6 @@ export default function FeedScreen() {
     };
     data();
   }, []);
-  console.log('Testing 0: ', posts);
   //fetchPost();
   const width = Dimensions.get('screen').width;
   return (

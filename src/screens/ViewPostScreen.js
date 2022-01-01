@@ -13,7 +13,7 @@ import Header from '../components/Header';
 
 const image = require('../assets/goku.png');
 
-const Publish = () => {
+const ViewPostScreen = () => {
   const tags = [
     {
       id: 1,
@@ -46,19 +46,9 @@ const Publish = () => {
       <View style={{flex: 0.88}}>
         <View
           style={{flex: 0.3, borderBottomWidth: 1, borderColor: 'lightgrey'}}>
-          <TextInput
-            onChangeText={text => setPost(text)}
-            style={{
-              backgroundColor: '#d4d4d4',
-              width: '100%',
-              height: 60,
-              padding: 10,
-              color: 'black',
-              fontSize: 16,
-            }}
-            placeholder="What's on your mind"
-            selectionColor={'orange'}
-          />
+          <View>
+            <Text>Hello what's up</Text>
+          </View>
           <View
             style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
             <Image
@@ -111,7 +101,7 @@ const Publish = () => {
   );
 };
 
-export default Publish;
+export default ViewPostScreen;
 
 const styles = StyleSheet.create({
   container: {flex: 1, justifyContent: 'center', alignItems: 'center'},
