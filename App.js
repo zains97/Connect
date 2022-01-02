@@ -34,7 +34,7 @@ function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Publish"
+          initialRouteName="ViewPost"
           screenOptions={{headerShown: false}}>
           <Stack.Screen name="Publish" component={Publish} />
           <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
