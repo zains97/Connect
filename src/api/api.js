@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const hostURL = 'http://192.168.10.10:4050';
+const hostURL = 'http://192.168.0.106:4050';
 
 //APIs for posts
 export const fetchPost = async () => {
@@ -10,9 +10,9 @@ export const fetchPost = async () => {
   return data;
 };
 
-export const newPost = async (postBody, likes, tags) => {
+export const newPost = async (postBody, tags) => {
   const url = `${hostURL}/api/posts`;
-  axios.post(url, {postBody, tags});
+  axios.post(url, {postBody, tags}).then(res => console.log(res.data));
 };
 
 export const getAllPosts = async (req, res) => {

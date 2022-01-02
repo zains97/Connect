@@ -73,7 +73,7 @@ export default function LoginScreen({navigation}) {
         <Button
           onPress={async () => {
             setUser(await loginUser(email, password));
-            // user ? navigation.navigate('Feed') : null;
+            user ? navigation.navigate('Feed') : null;
           }}
           colorScheme="blue"
           w={{

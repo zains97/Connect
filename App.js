@@ -34,23 +34,16 @@ function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Splash"
+          initialRouteName="Publish"
           screenOptions={{headerShown: false}}>
-          {token ? (
-            <>
-              <Stack.Screen name="Publish" component={Publish} />
-              <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
-              <Stack.Screen name="Profile" component={ProfileScreen} />
-              <Stack.Screen name="Feed" component={FeedScreen} />
-              <Stack.Screen name="ViewPost" component={ViewPostScreen} />
-            </>
-          ) : (
-            <>
-              <Stack.Screen name="Splash" component={SplashScreen} />
-              <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen name="SignUp" component={SignUpScreen} />
-            </>
-          )}
+          <Stack.Screen name="Publish" component={Publish} />
+          <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Feed" component={FeedScreen} />
+          <Stack.Screen name="ViewPost" component={ViewPostScreen} />
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
