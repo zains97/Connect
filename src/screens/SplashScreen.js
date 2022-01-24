@@ -1,14 +1,34 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Image, Dimensions} from 'react-native';
 import {Text} from 'native-base';
-
-const {width, height} = Dimensions.get('screen');
+import {TokenState} from '../redux/slices/jwtSlice';
+import {useDispatch, useSelector} from 'react-redux';
+//import {getToken} from '../utils/getToken';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SplashScreen({navigation}) {
-  useEffect(() => {
-    setTimeout(() => navigation.replace('Login'), 3000);
-  });
   const logo = require('../assets/ConnectLogo.png');
+
+  const jwt = useSelector(state => state.jwt.token);
+  const dispatch = useDispatch();
+
+  useEffect(async () => {
+    const getToken = async () => {
+      return await AsyncStorage.getItem('token');
+    };
+    const token = await getToken();
+    if (token) {
+      dispatch(TokenState(token));
+      setTimeout(() => {
+        navigation.replace('Feed');
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        navigation.replace('Login');
+      }, 3000);
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
