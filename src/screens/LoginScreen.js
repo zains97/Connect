@@ -4,16 +4,23 @@ import {TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {loginUser} from '../api/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {TokenState} from '../redux/slices/jwtSlice';
 
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [user, setUser] = useState(null);
-  console.log('MY USER:         \n\n', user, '\n\n');
+  const jwt = useSelector(state => state.jwt.token);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const setToken = async () => {
       await AsyncStorage.setItem('token', user.token);
+      if (user.token) {
+        dispatch(TokenState(user.token));
+      }
     };
     if (user) {
       setToken();

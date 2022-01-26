@@ -4,12 +4,15 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  Image,
   StyleSheet,
 } from 'react-native';
-import {Avatar, Box, Icon, Text} from 'native-base';
+import {Icon} from 'native-base';
+import {Avatar, Box, Text} from 'native-base';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import CommentComponent from '../components/CommentComponent';
 
 const image = require('../assets/goku.png');
 const width = Dimensions.get('screen').width;
@@ -23,42 +26,44 @@ const ViewPostScreen = () => {
   const [post, setPost] = useState();
   const [tag, setTag] = useState();
   console.log(tag);
+
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.9}}>
-        <View
-          style={{
-            paddingHorizontal: 10,
-            width: width * 0.9,
-            marginVertical: 10,
-          }}>
-          <Text style={{fontSize: 14}}>I wonder what's for dinner?</Text>
-          <Box paddingY={2} px="2" marginY={2} borderTopWidth="1" flexDir="row">
-            <View style={{flexDirection: 'row'}}>
-              <TouchableOpacity>
-                <Avatar marginX="1" source={image} size="sm"></Avatar>
-              </TouchableOpacity>
-              <Text marginX="1" bold>
-                Zain
-              </Text>
-            </View>
-
-            <TouchableOpacity>
-              <Text marginX="2">Comments</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Icon
-                as={<FontAwesome5Icon name="thumbs-up" />}
-                size={5}
-                mr="2"
-                color="muted.400"
+      <Header />
+      <View style={styles.viewPostContainer}>
+        <View style={styles.postContainer}>
+          <Text
+            style={{backgroundColor: 'lightblue', padding: 10, fontSize: 14}}>
+            lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
+            dolor sit amet, consectetur adipiscing elit
+          </Text>
+          <View style={styles.optionsBar}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Image
+                source={image}
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 50,
+                  backgroundColor: 'black',
+                  marginRight: width * 0.02,
+                }}
               />
-            </TouchableOpacity>
-          </Box>
+              <Text style={{fontWeight: 'bold'}}>Zain Saleem</Text>
+            </View>
+            <Icon
+              as={<FontAwesome5Icon name="thumbs-up" />}
+              size={6}
+              mr="2"
+              color="muted.400"
+            />
+          </View>
         </View>
-        <View style={{backgroundColor: 'blue', width}}></View>
+        <ScrollView style={styles.commentContainer}>
+          <CommentComponent />
+        </ScrollView>
       </View>
-      <View style={{flex: 0.1}}></View>
+      <Footer />
     </View>
   );
 };
@@ -70,6 +75,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: width,
+    width,
+  },
+  viewPostContainer: {
+    flex: 0.88,
+    width,
+  },
+  optionsBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: width * 0.02,
+  },
+  commentContainer: {
+    padding: 10,
   },
 });
