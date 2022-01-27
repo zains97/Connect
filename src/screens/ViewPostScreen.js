@@ -32,11 +32,13 @@ const ViewPostScreen = () => {
       <Header />
       <View style={styles.viewPostContainer}>
         <View style={styles.postContainer}>
-          <Text
-            style={{backgroundColor: 'lightblue', padding: 10, fontSize: 14}}>
+          <Text style={{padding: 10, fontSize: 14}}>
             lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
             dolor sit amet, consectetur adipiscing elit
           </Text>
+          <View
+            style={{width: '100%', height: 1, backgroundColor: 'lightgrey'}}
+          />
           <View style={styles.optionsBar}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
@@ -58,8 +60,15 @@ const ViewPostScreen = () => {
               color="muted.400"
             />
           </View>
+          <View
+            style={{width: '100%', height: 1, backgroundColor: 'lightgrey'}}
+          />
         </View>
         <ScrollView style={styles.commentContainer}>
+          <CommentComponent />
+          <CommentComponent />
+          <CommentComponent />
+          <CommentComponent />
           <CommentComponent />
         </ScrollView>
       </View>
@@ -85,7 +94,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: width * 0.02,
+    paddingVertical: width * 0.02,
+    paddingHorizontal: width * 0.04,
   },
   commentContainer: {
     padding: 10,

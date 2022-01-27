@@ -1,27 +1,46 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Image} from 'react-native';
+import image from '../assets/goku.png';
 
 const {width} = Dimensions.get('screen');
 
 const CommentComponent = () => {
   return (
-    <View
-      style={{
-        backgroundColor: '#0078fe',
-        padding: 10,
-        borderRadius: 5,
-        marginTop: 5,
-        marginLeft: '5%',
-        alignSelf: 'flex-start',
-        borderRadius: 20,
-        width: '95%',
-      }}>
-      <Text style={{fontSize: 16, color: '#fff', justifyContent: 'center'}}>
-        lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
-        dolor sit amet, consectetur adipiscing elit
-      </Text>
-      <View style={styles.leftArrow}></View>
-      <View style={styles.leftArrowOverlap}></View>
+    <View style={{flexDirection: 'row', width: '100%'}}>
+      <View>
+        <Image
+          source={image}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: 50,
+            backgroundColor: 'black',
+            marginRight: width * 0.02,
+          }}
+        />
+      </View>
+      <View
+        style={{
+          marginVertical: 20,
+          backgroundColor: '#0078fe',
+          paddingVertical: 10,
+          paddingRight: 5,
+          paddingLeft: 10,
+          borderRadius: 5,
+          marginTop: 5,
+          marginLeft: '5%',
+          alignSelf: 'flex-start',
+          borderRadius: 20,
+          width: '80%',
+        }}>
+        <Text style={{color: 'black', fontWeight: '900'}}>Zain Saleem</Text>
+        <Text style={{fontSize: 16, color: '#fff', justifyContent: 'center'}}>
+          lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
+          dolor sit amet, consectetur adipiscing elit
+        </Text>
+        <View style={styles.leftArrow}></View>
+        <View style={styles.leftArrowOverlap}></View>
+      </View>
     </View>
   );
 };
@@ -31,8 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#0078fe',
     width: 20,
     height: 25,
-    bottom: 0,
-    borderBottomRightRadius: 25,
+    top: 0,
+    borderTopRightRadius: 25,
     left: -10,
   },
 
@@ -42,8 +61,8 @@ const styles = StyleSheet.create({
     //backgroundColor:"green",
     width: 20,
     height: 35,
-    bottom: -6,
-    borderBottomRightRadius: 18,
+    top: -6,
+    borderTopRightRadius: 18,
     left: -20,
   },
 });

@@ -40,10 +40,7 @@ export default function FeedScreen() {
         alignItems="center"
         flexDirection="column"
         justifyContent="center"
-        // bgColor="blue.50"
-        flex={0.88}
-        // w={width}
-      >
+        flex={0.88}>
         <Box flex={0.05} borderBottomWidth="1" borderBottomColor="muted.300">
           <FeedSwitchComponent />
         </Box>

@@ -12,7 +12,7 @@ import SplashScreen from './src/screens/SplashScreen';
 import ViewPostScreen from './src/screens/ViewPostScreen';
 import {LogBox} from 'react-native';
 import {Provider} from 'react-redux';
-import {jwtStore} from './src/redux/store/jwtTokenStore';
+import {store} from './src/redux/store/store';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <Provider store={jwtStore}>
+    <Provider store={store}>
       <NativeBaseProvider>
         <NavigationContainer>
           <Stack.Navigator
