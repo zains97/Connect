@@ -2,16 +2,23 @@ import React from 'react';
 import {Box, Divider, VStack, Icon, Text, Avatar} from 'native-base';
 import {Dimensions, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {SelectedPostState} from '../redux/slices/selectedPostSlice';
 
-const PostComponent = ({postBody}) => {
+const PostComponent = ({postBody, item, navigation}) => {
   const image = require('../assets/goku.png');
   const width = Dimensions.get('screen').width;
+
+  const selectedPost = useSelector(state => state.selectedPost.selectedPost);
+  const dispatch = useDispatch();
+
   return (
     <Box
       width={width * 0.92}
       border="1"
       borderWidth="1"
-      borderColor="black"
+      borderColor="#60a5fa"
       borderRadius="10"
       marginY="2"
       marginX="3"
@@ -29,7 +36,12 @@ const PostComponent = ({postBody}) => {
             </Text>
           </View>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(SelectedPostState(item));
+              console.log('Selected Post: ', selectedPost);
+              navigation.navigate('ViewPost');
+            }}>
             <Text marginX="2">Comments</Text>
           </TouchableOpacity>
           <TouchableOpacity>

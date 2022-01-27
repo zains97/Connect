@@ -13,6 +13,7 @@ import ViewPostScreen from './src/screens/ViewPostScreen';
 import {LogBox} from 'react-native';
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store/store';
+import Test from './src/screens/test';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -28,9 +29,10 @@ function App() {
       <NativeBaseProvider>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="ViewPost"
+            initialRouteName="Feed"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="Publish" component={Publish} />
+            <Stack.Screen name="Test" component={Test} />
             <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Feed" component={FeedScreen} />

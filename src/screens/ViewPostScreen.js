@@ -18,15 +18,6 @@ const image = require('../assets/goku.png');
 const width = Dimensions.get('screen').width;
 
 const ViewPostScreen = () => {
-  const tags = {
-    id: 5,
-    name: 'Badminton',
-  };
-
-  const [post, setPost] = useState();
-  const [tag, setTag] = useState();
-  console.log(tag);
-
   return (
     <View style={styles.container}>
       <Header />
@@ -85,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width,
+    backgroundColor: 'white',
   },
   viewPostContainer: {
     flex: 0.88,

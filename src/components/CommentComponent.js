@@ -22,7 +22,7 @@ const CommentComponent = () => {
       <View
         style={{
           marginVertical: 20,
-          backgroundColor: '#0078fe',
+          backgroundColor: '#60a5fa',
           paddingVertical: 10,
           paddingRight: 5,
           paddingLeft: 10,
@@ -33,11 +33,11 @@ const CommentComponent = () => {
           borderRadius: 20,
           width: '80%',
         }}>
-        <Text style={{color: 'black', fontWeight: '900'}}>Zain Saleem</Text>
         <Text style={{fontSize: 16, color: '#fff', justifyContent: 'center'}}>
           lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
           dolor sit amet, consectetur adipiscing elit
         </Text>
+        <Text style={{color: 'black', fontWeight: '900'}}>Zain Saleem</Text>
         <View style={styles.leftArrow}></View>
         <View style={styles.leftArrowOverlap}></View>
       </View>
@@ -47,7 +47,7 @@ const CommentComponent = () => {
 const styles = StyleSheet.create({
   leftArrow: {
     position: 'absolute',
-    backgroundColor: '#0078fe',
+    backgroundColor: '#60a5fa',
     width: 20,
     height: 25,
     top: 0,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
   leftArrowOverlap: {
     position: 'absolute',
-    backgroundColor: '#eeeeee',
+    backgroundColor: 'white',
     //backgroundColor:"green",
     width: 20,
     height: 35,

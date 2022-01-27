@@ -1,12 +1,12 @@
-import {Box, Text} from 'native-base';
+import {Box, FlatList, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {Dimensions, ScrollView} from 'react-native';
+import {Dimensions, ScrollView, TouchableOpacity} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import FeedSwitchComponent from '../components/FeedSwitchComponent';
 import PostComponent from '../components/PostComponent';
 import {fetchPost, getAllPosts} from '../api/api';
 
-export default function FeedScreen() {
+export default function FeedScreen({navigation}) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,11 @@ export default function FeedScreen() {
     };
     data();
   }, []);
+
+  const state = {
+    refresh: true,
+  };
+
   //fetchPost();
   const width = Dimensions.get('screen').width;
   return (
@@ -50,11 +55,20 @@ export default function FeedScreen() {
           flexDirection="column"
           alignItems="center"
           w={width}>
-          <ScrollView>
-            {posts.map(post => (
-              <PostComponent postBody={post?.postBody} />
-            ))}
-          </ScrollView>
+          <FlatList
+            data={posts}
+            extraData={posts}
+            keyExtractor={item => item._id}
+            renderItem={({item, index}) => {
+              return (
+                <PostComponent
+                  navigation={navigation}
+                  item={item}
+                  postBody={item?.postBody}
+                />
+              );
+            }}
+          />
         </Box>
       </Box>
       {/* Feed Body end */}
