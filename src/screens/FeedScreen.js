@@ -5,6 +5,8 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import FeedSwitchComponent from '../components/FeedSwitchComponent';
 import PostComponent from '../components/PostComponent';
 import {fetchPost, getAllPosts} from '../api/api';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function FeedScreen({navigation}) {
   const [posts, setPosts] = useState([]);
@@ -29,18 +31,7 @@ export default function FeedScreen({navigation}) {
       justifyContent="center"
       flex={1}
       w={width}>
-      <Box //Header
-        paddingX="2"
-        alignItems="center"
-        flexDirection="row"
-        justifyContent="space-between"
-        display="flex"
-        bgColor="darkBlue.500"
-        flex={0.07}
-        w={width}>
-        <Text color="white">Connect</Text>
-        <FontAwesome5Icon size={40} name="comments" color="white" />
-      </Box>
+      <Header />
       <Box //Feed Body
         alignItems="center"
         flexDirection="column"
@@ -72,16 +63,7 @@ export default function FeedScreen({navigation}) {
         </Box>
       </Box>
       {/* Feed Body end */}
-      <Box //Footer
-        alignItems="center"
-        justifyContent="center"
-        display="flex"
-        bgColor="blue.500"
-        flex={0.05}
-        // w={width}
-      >
-        c
-      </Box>
+      <Footer navigation={navigation} />
     </Box>
   );
 }

@@ -13,19 +13,20 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import CommentComponent from '../components/CommentComponent';
+import {useSelector} from 'react-redux';
 
 const image = require('../assets/goku.png');
 const width = Dimensions.get('screen').width;
 
 const ViewPostScreen = () => {
+  const selectedPost = useSelector(state => state.selectedPost.selectedPost);
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.viewPostContainer}>
         <View style={styles.postContainer}>
           <Text style={{padding: 10, fontSize: 14}}>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
-            dolor sit amet, consectetur adipiscing elit
+            {selectedPost.postBody}
           </Text>
           <View
             style={{width: '100%', height: 1, backgroundColor: 'lightgrey'}}
@@ -56,11 +57,9 @@ const ViewPostScreen = () => {
           />
         </View>
         <ScrollView style={styles.commentContainer}>
-          <CommentComponent />
-          <CommentComponent />
-          <CommentComponent />
-          <CommentComponent />
-          <CommentComponent />
+          {selectedPost.comments.map(comment => (
+            <CommentComponent commentBody={comment.commentBody} />
+          ))}
         </ScrollView>
       </View>
       <Footer />

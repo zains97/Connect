@@ -1,22 +1,34 @@
 import {Text, Box} from 'native-base';
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View, Image} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-
+import Logo from '../assets/modifiedConnectLogo.png';
 export default function Header() {
   const {width} = Dimensions.get('screen');
   return (
     <Box //Header
+      paddingY="1"
       paddingX="2"
       alignItems="center"
       flexDirection="row"
-      justifyContent="space-between"
+      justifyContent="flex-start"
       display="flex"
-      bgColor="darkBlue.500"
-      flex={0.07}
+      bgColor="blue.500"
+      flex={0.05}
       w={width}>
-      <Text color="white">Connect</Text>
-      <FontAwesome5Icon size={40} name="comments" color="white" />
+      <Image
+        source={Logo}
+        style={{
+          width: 30,
+          height: 30,
+          borderRadius: 50,
+          backgroundColor: '#3b82f6',
+          marginRight: width * 0.02,
+        }}
+      />
+      <Text color="white" fontWeight={'extrabold'} fontSize="20">
+        Connect
+      </Text>
     </Box>
   );
 }

@@ -4,7 +4,7 @@ import image from '../assets/goku.png';
 
 const {width} = Dimensions.get('screen');
 
-const CommentComponent = () => {
+const CommentComponent = ({commentBody}) => {
   return (
     <View style={{flexDirection: 'row', width: '100%'}}>
       <View>
@@ -34,8 +34,7 @@ const CommentComponent = () => {
           width: '80%',
         }}>
         <Text style={{fontSize: 16, color: '#fff', justifyContent: 'center'}}>
-          lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum
-          dolor sit amet, consectetur adipiscing elit
+          {commentBody}
         </Text>
         <Text style={{color: 'black', fontWeight: '900'}}>Zain Saleem</Text>
         <View style={styles.leftArrow}></View>
