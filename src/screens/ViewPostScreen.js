@@ -18,7 +18,7 @@ import {useSelector} from 'react-redux';
 const image = require('../assets/goku.png');
 const width = Dimensions.get('screen').width;
 
-const ViewPostScreen = () => {
+const ViewPostScreen = ({navigation}) => {
   const selectedPost = useSelector(state => state.selectedPost.selectedPost);
   return (
     <View style={styles.container}>
@@ -62,7 +62,7 @@ const ViewPostScreen = () => {
           ))}
         </ScrollView>
       </View>
-      <Footer />
+      <Footer navigation={navigation} />
     </View>
   );
 };

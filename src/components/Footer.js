@@ -16,56 +16,45 @@ const Footer = ({navigation}) => {
       w={width}>
       <Box>
         <TouchableOpacity
+          style={{flex: 0.2, justifyContent: 'center'}}
           onPress={() => {
             navigation.navigate('Feed');
           }}>
-          <Icon
-            as={<FontAwesome5 name="newspaper" />}
-            size={8}
-            ml="2"
-            color="white"
-          />
+          <Icon as={<FontAwesome5 name="newspaper" />} size={8} color="white" />
         </TouchableOpacity>
       </Box>
       <Box>
-        <TouchableOpacity>
-          <Icon
-            as={<FontAwesome5 name="envelope" />}
-            size={8}
-            ml="2"
-            color="white"
-          />
+        <TouchableOpacity style={{flex: 0.2, justifyContent: 'center'}}>
+          <Icon as={<FontAwesome5 name="envelope" />} size={8} color="white" />
         </TouchableOpacity>
       </Box>
       <Box>
         <TouchableOpacity
+          style={{flex: 0.2, justifyContent: 'center'}}
           onPress={() => {
             navigation.navigate('Publish');
           }}>
           <Icon
             as={<FontAwesome5 name="plus-square" />}
             size={10}
-            ml="2"
             color="white"
           />
         </TouchableOpacity>
       </Box>
       <Box>
-        <TouchableOpacity>
-          <Icon
-            as={<FontAwesome5 name="user" />}
-            size={8}
-            ml="2"
-            color="white"
-          />
+        <TouchableOpacity
+          style={{flex: 0.2, justifyContent: 'center'}}
+          onPress={() => {
+            navigation.navigate('Profile');
+          }}>
+          <Icon as={<FontAwesome5 name="user" />} size={8} color="white" />
         </TouchableOpacity>
       </Box>
       <Box>
-        <TouchableOpacity>
+        <TouchableOpacity style={{flex: 0.2, justifyContent: 'center'}}>
           <Icon
             as={<FontAwesome5 name="map-marked" />}
             size={8}
-            ml="2"
             color="white"
           />
         </TouchableOpacity>

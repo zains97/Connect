@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Divider, VStack, Icon, Text, Avatar} from 'native-base';
-import {Dimensions, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
@@ -27,9 +27,26 @@ const PostComponent = ({postBody, item, navigation}) => {
       <VStack space="2" divider={<Divider />}>
         <Box px="2">{postBody}</Box>
         <Box px="2" width={width * 0.6} flexDir="row">
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity>
-              <Avatar marginX="1" source={image} size="sm"></Avatar>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Profile');
+              }}>
+              <Image
+                source={image}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 50,
+                  backgroundColor: 'black',
+                  marginRight: width * 0.02,
+                  marginVertical: width * 0.005,
+                }}
+              />
             </TouchableOpacity>
             <Text marginX="1" bold>
               Zain
@@ -37,6 +54,7 @@ const PostComponent = ({postBody, item, navigation}) => {
           </View>
 
           <TouchableOpacity
+            style={{justifyContent: 'center'}}
             onPress={() => {
               dispatch(SelectedPostState(item));
               console.log('Selected Post: ', selectedPost);
@@ -44,7 +62,7 @@ const PostComponent = ({postBody, item, navigation}) => {
             }}>
             <Text marginX="2">Comments</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity style={{justifyContent: 'center'}}>
             <Icon
               as={<FontAwesome5 name="thumbs-up" />}
               size={5}

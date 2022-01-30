@@ -1,7 +1,6 @@
 import {Text, Box} from 'native-base';
 import React from 'react';
 import {Dimensions, StyleSheet, View, Image} from 'react-native';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Logo from '../assets/modifiedConnectLogo.png';
 export default function Header() {
   const {width} = Dimensions.get('screen');

@@ -103,7 +103,12 @@ const Publish = ({navigation}) => {
                       borderWidth: 3,
                       borderColor: data.name === tag ? '#1d4ed8' : '#3b82f6',
                     }}>
-                    <Text style={{color: 'white', fontSize: 16}}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: data.name === tag ? 18 : 16,
+                        fontWeight: data.name === tag ? 'bold' : null,
+                      }}>
                       {data.name}
                     </Text>
                   </View>

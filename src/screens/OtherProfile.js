@@ -1,32 +1,58 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   Image,
   ImageBackground,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
-import {Box, Divider, VStack} from 'native-base';
+import Footer from '../components/Footer';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {Icon} from 'native-base';
+import OtherProfileModal from '../components/OtherProfileModal';
 
-const Profile = () => {
+const OtherProfile = ({navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const {width} = Dimensions.get('screen');
   const image = require('../assets/goku.png');
   return (
     <>
       <ImageBackground
         source={image}
         style={{
-          flex: 0.95,
+          flex: 0.925,
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: '#000000c0',
         }}
         imageStyle={{opacity: 0.2}}>
+        <TouchableOpacity
+          onPress={() => setModalVisible(true)}
+          style={{
+            paddingRight: width * 0.03,
+            marginVertical: width * 0.03,
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            width,
+          }}>
+          <Icon
+            as={<FontAwesome5 name="ellipsis-v" />}
+            size={5}
+            ml="2"
+            color="white"
+          />
+        </TouchableOpacity>
         <View
           style={{
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
+          <OtherProfileModal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+          />
           <View
             style={{
               borderWidth: 1,
@@ -85,18 +111,9 @@ const Profile = () => {
           </View>
         </View>
       </ImageBackground>
-      <Box //Footer
-        alignItems="center"
-        justifyContent="center"
-        display="flex"
-        bgColor="blue.500"
-        flex={0.05}
-        // w={width}
-      >
-        c
-      </Box>
+      <Footer navigation={navigation} />
     </>
   );
 };
 
-export default Profile;
+export default OtherProfile;

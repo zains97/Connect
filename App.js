@@ -5,7 +5,7 @@ import {NativeBaseProvider} from 'native-base';
 import LoginScreen from './src/screens/LoginScreen';
 import FeedScreen from './src/screens/FeedScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-import ProfileScreen from './src/screens/Profile';
+import ProfileScreen from './src/screens/MyProfile';
 import Publish from './src/screens/Publish';
 import UpdateProfile from './src/screens/UpdateProfile';
 import SplashScreen from './src/screens/SplashScreen';
@@ -14,6 +14,7 @@ import {LogBox} from 'react-native';
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store/store';
 import Test from './src/screens/test';
+import OtherProfile from './src/screens/OtherProfile';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
       <NativeBaseProvider>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="Feed"
+            initialRouteName="OtherProfile"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="Publish" component={Publish} />
             <Stack.Screen name="Test" component={Test} />
@@ -40,6 +41,7 @@ function App() {
             <Stack.Screen name="Splash" component={SplashScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
+            <Stack.Screen name="OtherProfile" component={OtherProfile} />
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
