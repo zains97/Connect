@@ -7,6 +7,7 @@ import PostComponent from '../components/PostComponent';
 import {fetchPost, getAllPosts} from '../api/api';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import {useSelector} from 'react-redux';
 
 export default function FeedScreen({navigation}) {
   const [posts, setPosts] = useState([]);

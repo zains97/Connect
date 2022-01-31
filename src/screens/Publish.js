@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from 'react-native';
 import Header from '../components/Header';
 import {newPost} from '../api/api';
@@ -38,11 +39,16 @@ const Publish = ({navigation}) => {
       name: 'Badminton',
     },
   ];
-  const publishPost = async ({navigation}) => {
-    newPost(postBody, tag);
+  const publishPost = () => {
+    if (postBody.length < 10) {
+      Alert.alert('Post must be more than 10 characters long.');
+    } else {
+      newPost(postBody, tag);
+      navigation.navigate('Feed');
+    }
   };
 
-  const [postBody, setPostBody] = useState();
+  const [postBody, setPostBody] = useState('');
   const [tag, setTag] = useState();
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
@@ -122,7 +128,6 @@ const Publish = ({navigation}) => {
             activeOpacity={0.6}
             onPress={() => {
               publishPost();
-              navigation.navigate('Feed');
             }}>
             <View
               style={{

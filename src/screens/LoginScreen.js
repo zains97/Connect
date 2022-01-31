@@ -17,9 +17,9 @@ export default function LoginScreen({navigation}) {
 
   useEffect(() => {
     const setToken = async () => {
-      await AsyncStorage.setItem('token', user.token);
-      if (user.token) {
-        dispatch(TokenState(user.token));
+      await AsyncStorage.setItem('token', JSON.stringify(user));
+      if (user) {
+        dispatch(TokenState(user));
       }
     };
     if (user) {
