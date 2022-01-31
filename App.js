@@ -30,7 +30,7 @@ function App() {
       <NativeBaseProvider>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="Publish"
+            initialRouteName="SignUp"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="Publish" component={Publish} />
             <Stack.Screen name="Test" component={Test} />

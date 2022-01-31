@@ -26,3 +26,27 @@ export const loginUser = async (email, password) => {
   const {data} = await axios.post(url, {email, password}).then(res => res.data);
   return data;
 };
+
+export const addFriend = async (userId, friendsId) => {
+  const url = `${hostURL}/api/auth/add-friend/${friendsId}`;
+  const data = axios.put(url, {friendsId});
+};
+
+export const signUp = async (
+  firstName,
+  lastName,
+  email,
+  password,
+  gender,
+  interests,
+) => {
+  const data = await axios.post(`${hostURL}/api/auth/register`, {
+    firstName,
+    lastName,
+    email,
+    password,
+    gender,
+    interests,
+  });
+  return data;
+};

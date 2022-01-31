@@ -1,6 +1,5 @@
 import {
   Modal,
-  Pressable,
   StyleSheet,
   Text,
   View,

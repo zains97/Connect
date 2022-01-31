@@ -1,9 +1,20 @@
 import {Box, Button, Heading, Icon, Input, Stack, Text} from 'native-base';
-import React from 'react';
+import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {signUp} from '../api/api';
 
 export default function SignUpScreen({navigation}) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const register = (firstName, lastName, email, password, confirmPassword) => {
+    signUp(firstName, lastName, email, password, confirmPassword);
+  };
+
   return (
     <Box dispaly="flex" flex={1} style={{backgroundColor: 'white'}}>
       <Box
@@ -19,6 +30,8 @@ export default function SignUpScreen({navigation}) {
         </Text>
         <Stack marginBottom="2.5" space={4} w="100%" alignItems="center">
           <Input
+            onChangeText={text => setFirstName(text)}
+            value={firstName}
             variant="filled"
             w={{
               base: '75%',
@@ -32,9 +45,11 @@ export default function SignUpScreen({navigation}) {
                 color="muted.400"
               />
             }
-            placeholder="Enter name"
+            placeholder="Enter first name"
           />
           <Input
+            onChangeText={text => setLastName(text)}
+            value={lastName}
             variant="filled"
             w={{
               base: '75%',
@@ -48,9 +63,29 @@ export default function SignUpScreen({navigation}) {
                 color="muted.400"
               />
             }
-            placeholder="Enter user name"
+            placeholder="Enter last name"
           />
           <Input
+            onChangeText={text => setEmail(text)}
+            value={email}
+            variant="filled"
+            w={{
+              base: '75%',
+              md: '25%',
+            }}
+            InputLeftElement={
+              <Icon
+                as={<FontAwesome5 name="at" />}
+                size={5}
+                ml="2"
+                color="muted.400"
+              />
+            }
+            placeholder="Enter email"
+          />
+          <Input
+            onChangeText={text => setPassword(text)}
+            value={password}
             variant="filled"
             type="password"
             w={{
@@ -68,6 +103,8 @@ export default function SignUpScreen({navigation}) {
             placeholder="Password"
           />
           <Input
+            onChangeText={text => setConfirmPassword(text)}
+            value={confirmPassword}
             variant="filled"
             type="password"
             w={{
@@ -92,7 +129,7 @@ export default function SignUpScreen({navigation}) {
             md: '25%',
           }}
           marginBottom="1">
-          Login
+          Sign Up
         </Button>
       </Box>
       <Box
@@ -103,7 +140,10 @@ export default function SignUpScreen({navigation}) {
         flex={0.05}
         backgroundColor="blue.200">
         <Text>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Login');
+          }}>
           <Text bold color="blue.800">
             {' '}
             Login
