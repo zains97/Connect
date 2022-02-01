@@ -1,6 +1,6 @@
 import {Box, Button, Heading, Icon, Input, Stack, Text} from 'native-base';
 import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Alert, TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {signUp} from '../api/api';
 
@@ -11,8 +11,16 @@ export default function SignUpScreen({navigation}) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const register = (firstName, lastName, email, password, confirmPassword) => {
-    signUp(firstName, lastName, email, password, confirmPassword);
+  const register = (firstName, lastName, email, password, gender) => {
+    if (password == confirmPassword) {
+      signUp(firstName, lastName, email, password, gender).then(data => {
+        if (data.firstName === firstName) {
+          navigation.navigate('Login');
+        }
+      });
+    } else {
+      Alert.alert("Passwords don't match");
+    }
   };
 
   return (
@@ -123,6 +131,9 @@ export default function SignUpScreen({navigation}) {
           />
         </Stack>
         <Button
+          onPress={() =>
+            register(firstName, lastName, email, password, confirmPassword)
+          }
           colorScheme="blue"
           w={{
             base: '75%',

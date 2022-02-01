@@ -14,10 +14,14 @@ export default function SplashScreen({navigation}) {
 
   useEffect(async () => {
     const getToken = async () => {
-      return await AsyncStorage.getItem('token');
+      let object = await AsyncStorage.getItem('token');
+      typeof object === 'object' ? (object = JSON.parse(object)) : null;
+      console.log('USER OBJECT: ', object);
+      return object;
     };
     const token = await getToken();
-    if (token) {
+    console.log('USER OBJECT: ', token);
+    if (token && token !== 'Logged Out') {
       dispatch(TokenState(token));
       setTimeout(() => {
         navigation.replace('Feed');

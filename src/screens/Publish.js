@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -12,44 +12,108 @@ import {
 import Header from '../components/Header';
 import {newPost} from '../api/api';
 import Footer from '../components/Footer';
-
+import {useSelector} from 'react-redux';
 const image = require('../assets/goku.png');
 
 const Publish = ({navigation}) => {
+  useEffect(() => {
+    setPostBody(null);
+    setTag(null);
+  }, []);
+
+  const jwt = useSelector(state => state.jwt.token);
   const {width} = Dimensions.get('screen');
   const tags = [
+    {
+      id: 0,
+      name: 'General',
+    },
     {
       id: 1,
       name: 'Football',
     },
     {
       id: 2,
-      name: 'Cricket',
+      name: 'Sports',
     },
     {
       id: 3,
-      name: 'Basketball',
+      name: 'Programming',
     },
     {
       id: 4,
-      name: 'Tennis',
+      name: 'Cricket',
     },
     {
       id: 5,
-      name: 'Badminton',
+      name: 'Cooking',
+    },
+    {
+      id: 6,
+      name: 'Marital Arts',
+    },
+    {
+      id: 7,
+      name: 'Tech',
+    },
+    {
+      id: 8,
+      name: 'Science',
+    },
+    {
+      id: 9,
+      name: 'Religion',
+    },
+    {
+      id: 10,
+      name: 'Islam',
+    },
+    {
+      id: 11,
+      name: 'Health',
+    },
+    {
+      id: 12,
+      name: 'Fitness',
+    },
+    {
+      id: 13,
+      name: 'Weapons',
+    },
+    {
+      id: 14,
+      name: 'Politics',
+    },
+    {
+      id: 15,
+      name: 'Econimics',
+    },
+    {
+      id: 16,
+      name: 'Gaming',
+    },
+    {
+      id: 17,
+      name: 'Philosophy',
     },
   ];
+
+  const [postBody, setPostBody] = useState('');
+  const [tag, setTag] = useState(null);
   const publishPost = () => {
     if (postBody.length < 10) {
       Alert.alert('Post must be more than 10 characters long.');
     } else {
-      newPost(postBody, tag);
-      navigation.navigate('Feed');
+      if (tag) {
+        newPost(postBody, tag, jwt.user._id);
+        Alert.alert('Post has been created.');
+        setTimeout(() => navigation.navigate('Feed'), 2000);
+      } else {
+        Alert.alert('You must select a tag.');
+      }
     }
   };
 
-  const [postBody, setPostBody] = useState('');
-  const [tag, setTag] = useState();
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
       <Header />
@@ -57,6 +121,7 @@ const Publish = ({navigation}) => {
         <View style={{marginBottom: 5, justifyContent: 'center'}}>
           <TextInput
             onChangeText={text => setPostBody(text)}
+            value={postBody}
             style={{
               width: '100%',
               height: 60,

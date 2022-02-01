@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,8 +10,10 @@ import {
 import Footer from '../components/Footer';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Icon} from 'native-base';
+import MyProfileModal from '../components/MyProfileModal';
 
-const Profile = ({navigation}) => {
+const OtherProfile = ({navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const {width} = Dimensions.get('screen');
   const image = require('../assets/goku.png');
   return (
@@ -26,9 +28,7 @@ const Profile = ({navigation}) => {
         }}
         imageStyle={{opacity: 0.2}}>
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('UpdateProfile');
-          }}
+          onPress={() => setModalVisible(true)}
           style={{
             paddingRight: width * 0.03,
             marginVertical: width * 0.03,
@@ -36,7 +36,12 @@ const Profile = ({navigation}) => {
             justifyContent: 'flex-end',
             width,
           }}>
-          <Icon as={<FontAwesome5 name="edit" />} size={6} color="white" />
+          <Icon
+            as={<FontAwesome5 name="ellipsis-v" />}
+            size={5}
+            ml="2"
+            color="white"
+          />
         </TouchableOpacity>
         <View
           style={{
@@ -44,6 +49,11 @@ const Profile = ({navigation}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
+          <MyProfileModal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+            navigation={navigation}
+          />
           <View
             style={{
               borderWidth: 1,
@@ -107,4 +117,4 @@ const Profile = ({navigation}) => {
   );
 };
 
-export default Profile;
+export default OtherProfile;

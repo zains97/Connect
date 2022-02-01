@@ -8,29 +8,36 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get('screen');
-const OtherProfileModal = ({modalVisible, setModalVisible}) => {
+const OtherProfileModal = ({modalVisible, setModalVisible, navigation}) => {
   return (
     <Modal
       animationType="fade"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
         setModalVisible(!modalVisible);
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity
             style={styles.modalPress}
-            onPress={() => setModalVisible(!modalVisible)}>
-            <Text style={styles.textStyle}>Update</Text>
+            onPress={() => {
+              setModalVisible(!modalVisible);
+              navigation.navigate('UpdateProfile');
+            }}>
+            <Text style={styles.textStyle}>Update Profile Info</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalPressWarning}
-            onPress={() => setModalVisible(!modalVisible)}>
-            <Text style={styles.textStyle}>Block User</Text>
+            onPress={() => {
+              AsyncStorage.setItem('token', 'Logged Out');
+              setModalVisible(!modalVisible);
+              navigation.replace('Login');
+            }}>
+            <Text style={styles.textStyle}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </View>

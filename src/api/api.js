@@ -10,9 +10,9 @@ export const fetchPost = async () => {
   return data;
 };
 
-export const newPost = async (postBody, tags) => {
+export const newPost = async (postBody, tags, creator) => {
   const url = `${hostURL}/api/posts`;
-  axios.post(url, {postBody, tags}).then(res => console.log(res.data));
+  axios.post(url, {postBody, tags, creator}).then(res => console.log(res.data));
 };
 
 export const getAllPosts = async (req, res) => {
@@ -40,7 +40,7 @@ export const signUp = async (
   gender,
   interests,
 ) => {
-  const data = await axios.post(`${hostURL}/api/auth/register`, {
+  const {data} = await axios.post(`${hostURL}/api/auth/register`, {
     firstName,
     lastName,
     email,
@@ -48,5 +48,6 @@ export const signUp = async (
     gender,
     interests,
   });
-  return data;
+  console.log('API RESPONSE:', {data});
+  return {data};
 };

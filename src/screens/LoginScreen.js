@@ -17,9 +17,11 @@ export default function LoginScreen({navigation}) {
 
   useEffect(() => {
     const setToken = async () => {
+      console.log('SAVED USER', user);
       await AsyncStorage.setItem('token', JSON.stringify(user));
       if (user) {
         dispatch(TokenState(user));
+        console.log('SAVED USER STATE: ', jwt);
       }
     };
     if (user) {
