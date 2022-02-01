@@ -1,88 +1,112 @@
-import {Modal, Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-const test = ({navigation}) => {
-  const [modalVisible, setModalVisible] = useState(false);
-
+const App = () => {
+  const selectPhotoTapped = () => {
+    const options = {
+      title: 'Select Photo',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    launchImageLibrary(options, async response => {
+      // Use launchImageLibrary to open image gallery
+      console.log('Response = ', response);
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        const uri = response.assets[0].uri;
+        const type = response.assets[0].type;
+        const name = response.assets[0].fileName;
+        const source = {
+          uri,
+          type,
+          name,
+        };
+        console.log('Image =', source);
+      }
+    });
+  };
   return (
-    <View style={{flex: 1}}>
-      <Header />
-      <View style={{flex: 0.925}}>
-        <View style={styles.centeredView}>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
-            }}>
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}>
-                  <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-              </View>
-            </View>
-          </Modal>
-          <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}>
-            <Text style={styles.textStyle}>Show Modal</Text>
-          </Pressable>
-        </View>
+    <View>
+      <View style={styles.imageContainer}>
+        <Image
+          source={{
+            uri: 'https://res.cloudinary.com/ogcodes/image/upload/v1581387688/m0e7y6s5zkktpceh2moq.jpg',
+          }}
+          style={styles.backgroundImage}></Image>
+      </View>
+      <View style={styles.uploadContainer}>
+        <Text style={styles.uploadContainerTitle}>
+          ImagePicker to Cloudinary
+        </Text>
+        <TouchableOpacity
+          onPress={selectPhotoTapped}
+          style={styles.uploadButton}>
+          <Text style={styles.uploadButtonText}>Upload</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default test;
-
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
+  imageContainer: {
+    backgroundColor: '#fe5b29',
+    height: Dimensions.get('window').height,
   },
-  modalView: {
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
+  uploadContainer: {
+    backgroundColor: '#f6f5f8',
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
+    position: 'absolute',
+    bottom: 0,
+    width: Dimensions.get('window').width,
+    height: 200,
+  },
+  uploadContainerTitle: {
+    alignSelf: 'center',
+    fontSize: 25,
     margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
+    fontFamily: 'Roboto',
+  },
+  uploadButton: {
+    borderRadius: 16,
+    alignSelf: 'center',
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
-      height: 2,
+      width: 7,
+      height: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
+    shadowOpacity: 1.58,
+    shadowRadius: 9,
+    elevation: 4,
+    margin: 10,
     padding: 10,
-    elevation: 2,
+    backgroundColor: '#fe5b29',
+    width: Dimensions.get('window').width - 60,
+    alignItems: 'center',
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  uploadButtonText: {
+    color: '#f6f5f8',
+    fontSize: 20,
+    fontFamily: 'Roboto',
   },
 });
+export default App;
