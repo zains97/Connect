@@ -82,6 +82,13 @@ export default function LoginScreen({navigation}) {
         <Button
           onPress={async () => {
             setUser(await loginUser(email, password));
+            console.log(user);
+            await AsyncStorage.setItem('token', JSON.stringify(user));
+            if (user) {
+              dispatch(TokenState(user));
+              console.log('SAVED USER STATE: ', jwt);
+            }
+
             user ? navigation.navigate('Feed') : null;
           }}
           colorScheme="blue"

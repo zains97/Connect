@@ -31,6 +31,14 @@ const OtherProfileModal = ({modalVisible, setModalVisible, navigation}) => {
             <Text style={styles.textStyle}>Update Profile Info</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.modalPress}
+            onPress={() => {
+              setModalVisible(!modalVisible);
+              navigation.navigate('UploadImage');
+            }}>
+            <Text style={styles.textStyle}>Upload picture</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.modalPressWarning}
             onPress={() => {
               AsyncStorage.setItem('token', 'Logged Out');

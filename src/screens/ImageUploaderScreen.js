@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -6,13 +6,27 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import {uploadPicture} from '../api/api';
+import {useDispatch, useSelector} from 'react-redux';
+import {TokenState} from '../redux/slices/jwtSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const App = () => {
+const ImageUploader = ({navigation}) => {
+  const jwt = useSelector(state => state.jwt.token);
+  const dispatch = useDispatch();
+
   const [photo, setPhoto] = useState(
     'https://res.cloudinary.com/ogcodes/image/upload/v1581387688/m0e7y6s5zkktpceh2moq.jpg',
   );
+  const [user, setUser] = useState();
+
+  console.log('Type', typeof jwt);
+  console.log(jwt.user._id);
 
   const cloudinaryUpload = photo => {
     const data = new FormData();
@@ -27,8 +41,16 @@ const App = () => {
         return res.json();
       })
       .then(data => {
-        console.log('Cloudinary URL:', data.secure_url);
+        uploadPicture(jwt.user._id, data.secure_url);
+        const updatedState = {
+          ...jwt,
+          profilePic: data.secure_url,
+        };
+        dispatch(TokenState(updatedState));
+        const json = JSON.stringify(jwt);
+        AsyncStorage.setItem('token', json);
         setPhoto(data.secure_url);
+        navigation.navigate('Profile');
       })
       .catch(err => {
         Alert.alert('An Error Occured While Uploading');
@@ -65,7 +87,8 @@ const App = () => {
     });
   };
   return (
-    <View>
+    <View style={{flex: 1}}>
+      <Header />
       <View style={styles.imageContainer}>
         <Image
           source={{
@@ -74,15 +97,14 @@ const App = () => {
           style={styles.backgroundImage}></Image>
       </View>
       <View style={styles.uploadContainer}>
-        <Text style={styles.uploadContainerTitle}>
-          ImagePicker to Cloudinary
-        </Text>
+        <Text style={styles.uploadContainerTitle}>ImagePicker</Text>
         <TouchableOpacity
           onPress={selectPhotoTapped}
           style={styles.uploadButton}>
           <Text style={styles.uploadButtonText}>Upload</Text>
         </TouchableOpacity>
       </View>
+      <Footer navigation={navigation} />
     </View>
   );
 };
@@ -90,7 +112,7 @@ const App = () => {
 const styles = StyleSheet.create({
   imageContainer: {
     backgroundColor: '#fe5b29',
-    height: Dimensions.get('window').height,
+    flex: 0.925,
   },
   backgroundImage: {
     flex: 1,
@@ -134,4 +156,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
 });
-export default App;
+export default ImageUploader;

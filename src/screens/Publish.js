@@ -105,14 +105,22 @@ const Publish = ({navigation}) => {
       Alert.alert('Post must be more than 10 characters long.');
     } else {
       if (tag) {
-        newPost(postBody, tag, jwt.user._id);
-        Alert.alert('Post has been created.');
+        console.log('TOKEN', jwt.user._id);
+        newPost(
+          postBody,
+          tag,
+          jwt.user._id,
+          jwt.profilePic,
+          jwt.user.firstName,
+        );
+        Alert.alert('Post created');
         setTimeout(() => navigation.navigate('Feed'), 2000);
       } else {
         Alert.alert('You must select a tag.');
       }
     }
   };
+  console.log('PIC', jwt);
 
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
@@ -139,7 +147,7 @@ const Publish = ({navigation}) => {
               alignItems: 'center',
             }}>
             <Image
-              source={image}
+              source={{uri: jwt.profilePic}}
               style={{
                 width: 50,
                 height: 50,
@@ -148,7 +156,9 @@ const Publish = ({navigation}) => {
               }}
               resizeMode="cover"
             />
-            <Text style={{color: 'black', fontSize: 16, left: 10}}>Zain</Text>
+            <Text style={{color: 'black', fontSize: 16, left: 10}}>
+              {jwt.user.firstName}
+            </Text>
           </View>
           <View
             style={{width: '100%', height: 1, backgroundColor: 'lightgrey'}}

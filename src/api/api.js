@@ -10,14 +10,27 @@ export const fetchPost = async () => {
   return data;
 };
 
-export const newPost = async (postBody, tags, creator) => {
+export const newPost = async (
+  postBody,
+  tags,
+  creator,
+  creatorImage,
+  creatorName,
+) => {
   const url = `${hostURL}/api/posts`;
-  axios.post(url, {postBody, tags, creator}).then(res => console.log(res.data));
+  axios
+    .post(url, {postBody, tags, creator, creatorImage, creatorName})
+    .then(res => console.log(res.data));
 };
 
 export const getAllPosts = async (req, res) => {
   const {data} = await (await fetch(`${hostURL}/api/posts`)).json();
   return data;
+};
+
+export const newComment = async (creatorName, commentBody, creatorImage) => {
+  const url = `${hostURL}/api/posts/new-comment/61f9db821e2712a7bb83602d`;
+  axios.put(url, {creatorName, commentBody, creatorImage});
 };
 
 //APIs for user
@@ -50,4 +63,11 @@ export const signUp = async (
   });
   console.log('API RESPONSE:', {data});
   return {data};
+};
+
+export const uploadPicture = async (userId, profilePic) => {
+  const url = `${hostURL}/api/user/upload-photo`;
+  const data = await axios.put(url, {userId, profilePic});
+  console.log(data);
+  return data;
 };

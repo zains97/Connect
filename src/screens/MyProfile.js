@@ -11,15 +11,17 @@ import Footer from '../components/Footer';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Icon} from 'native-base';
 import MyProfileModal from '../components/MyProfileModal';
+import {useSelector} from 'react-redux';
 
-const OtherProfile = ({navigation}) => {
+const MyProfile = ({navigation}) => {
+  const jwt = useSelector(state => state.jwt.token);
   const [modalVisible, setModalVisible] = useState(false);
   const {width} = Dimensions.get('screen');
   const image = require('../assets/goku.png');
   return (
     <>
       <ImageBackground
-        source={image}
+        source={{uri: jwt.profilePic}}
         style={{
           flex: 0.925,
           justifyContent: 'center',
@@ -66,13 +68,15 @@ const OtherProfile = ({navigation}) => {
               backgroundColor: 'black',
             }}>
             <Image
-              source={image}
+              source={{uri: jwt.profilePic}}
               resizeMode="contain"
               style={{width: 250, height: 250}}
             />
           </View>
           <View style={{marginVertical: 10}}>
-            <Text style={{color: 'white', fontSize: 24}}>Ahsan here</Text>
+            <Text style={{color: 'white', fontSize: 24}}>
+              {jwt.user.firstName} {jwt.user.lastName}
+            </Text>
           </View>
           <View
             style={{
@@ -117,4 +121,4 @@ const OtherProfile = ({navigation}) => {
   );
 };
 
-export default OtherProfile;
+export default MyProfile;

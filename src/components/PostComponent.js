@@ -6,8 +6,13 @@ import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {SelectedPostState} from '../redux/slices/selectedPostSlice';
 
-const PostComponent = ({postBody, item, navigation}) => {
-  const image = require('../assets/goku.png');
+const PostComponent = ({
+  postBody,
+  item,
+  navigation,
+  creatorName,
+  creatorImage,
+}) => {
   const width = Dimensions.get('screen').width;
 
   const selectedPost = useSelector(state => state.selectedPost.selectedPost);
@@ -37,7 +42,7 @@ const PostComponent = ({postBody, item, navigation}) => {
                 navigation.navigate('Profile');
               }}>
               <Image
-                source={image}
+                source={{uri: creatorImage}}
                 style={{
                   width: 30,
                   height: 30,
@@ -49,7 +54,7 @@ const PostComponent = ({postBody, item, navigation}) => {
               />
             </TouchableOpacity>
             <Text marginX="1" bold>
-              Zain
+              {creatorName}
             </Text>
           </View>
 

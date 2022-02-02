@@ -57,6 +57,8 @@ export default function FeedScreen({navigation}) {
                   navigation={navigation}
                   item={item}
                   postBody={item?.postBody}
+                  creatorName={item?.creatorName}
+                  creatorImage={item?.creatorImage}
                 />
               );
             }}

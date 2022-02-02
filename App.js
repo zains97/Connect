@@ -10,6 +10,7 @@ import Publish from './src/screens/Publish';
 import UpdateProfile from './src/screens/UpdateProfile';
 import SplashScreen from './src/screens/SplashScreen';
 import ViewPostScreen from './src/screens/ViewPostScreen';
+import ImageUploader from './src/screens/ImageUploaderScreen';
 import {LogBox} from 'react-native';
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store/store';
@@ -30,7 +31,7 @@ function App() {
       <NativeBaseProvider>
         <NavigationContainer>
           <Stack.Navigator
-            initialRouteName="Test"
+            initialRouteName="Splash"
             screenOptions={{headerShown: false}}>
             <Stack.Screen name="Publish" component={Publish} />
             <Stack.Screen name="Test" component={Test} />
@@ -42,6 +43,7 @@ function App() {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen name="OtherProfile" component={OtherProfile} />
+            <Stack.Screen name="UploadImage" component={ImageUploader} />
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
